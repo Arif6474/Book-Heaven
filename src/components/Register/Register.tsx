@@ -21,7 +21,7 @@ function Register() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4 max-w-[400px] mx-auto bg-slate-600 rounded-lg p-10">
           <div className="grid gap-1">
-            <label className="text-lg text-slate-100" htmlFor="email">
+            <label className="text-sm font-medium text-slate-100" htmlFor="email">
               Email
             </label>
             <input
@@ -35,7 +35,7 @@ function Register() {
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
-            <label className="text-lg text-slate-100 " htmlFor="email">
+            <label className="text-sm font-medium text-slate-100 " htmlFor="email">
               Password
             </label>
             <input
@@ -48,7 +48,7 @@ function Register() {
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
-            <label className="text text-slate-100" htmlFor="email">
+            <label className="text-sm font-medium text-slate-100" htmlFor="email">
               Confirm Password
             </label>
             <input
@@ -60,7 +60,7 @@ function Register() {
               autoCorrect="off"
             />
           </div>
-          <button className="btn">Create Account</button>
+          <button className="btn">Register</button>
         </div>
       </form>
     </div>
