@@ -1,11 +1,10 @@
 // import Footer from "./components/ui/Footer/Footer"
-import Home from "./page/Home"
+import MainLayout from "./layout/MainLayout"
 
 function App() {
   return (
     <div>
-      <Home/>
-      {/* <Footer/> */}
+         <MainLayout />
     </div>
   )
 }
