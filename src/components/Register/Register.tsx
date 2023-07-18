@@ -19,48 +19,48 @@ function Register() {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-4 max-w-[600px] mx-auto">
+        <div className="grid gap-4 max-w-[400px] mx-auto bg-slate-600 rounded-lg p-10">
           <div className="grid gap-1">
             <label className="text-lg text-slate-100" htmlFor="email">
               Email
             </label>
             <input
-              className="p-2 rounded-md my-2 text-slate-100"
+              className="p-2 rounded-md my-2 text-slate-100 placeholder:text-sm"
               id="email"
-              placeholder="name@example.com"
+              placeholder="Enter your email"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
               {...register("email", { required: "Email is required" })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
-            <label className="text-lg text-slate-100" htmlFor="email">
-              Email
+            {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+            <label className="text-lg text-slate-100 " htmlFor="email">
+              Password
             </label>
             <input
               id="password"
-              className="p-2 rounded-md my-2 text-slate-100"
-              placeholder="your password"
+              className="p-2 rounded-md my-2 text-slate-100 placeholder:text-sm"
+              placeholder="Enter your password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
               {...register("password", { required: "Password is required" })}
             />
-            {errors.password && <p>{errors.password.message}</p>}
-            <label className="text-lg text-slate-100" htmlFor="email">
-              Email
+            {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+            <label className="text text-slate-100" htmlFor="email">
+              Confirm Password
             </label>
             <input
               id="password"
-              className="p-2 rounded-md my-2 text-slate-100"
-              placeholder="confirm password"
+              className="p-2 rounded-md my-2 text-slate-100 placeholder:text-sm"
+              placeholder="Enter confirm password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
             />
           </div>
-          <button>Create Account</button>
+          <button className="btn">Create Account</button>
         </div>
       </form>
     </div>
