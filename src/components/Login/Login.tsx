@@ -1,11 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { loginUser } from "../../redux/features/users/userSlice";
 
 interface SignupFormInputs {
   email: string;
   password: string;
 }
 function Login() {
+  const dispatch = useAppDispatch();
+  // const { user } = useAppSelector((state) => state.user);
+  console.log("State:", useAppSelector((state) => state));
   const {
     register,
     handleSubmit,
@@ -13,8 +22,7 @@ function Login() {
   } = useForm<SignupFormInputs>();
 
   const onSubmit = (data: SignupFormInputs) => {
-    console.log(data);
-    // dispatch(createUser({email : data.email, password: data.password}))
+    dispatch(loginUser({email : data.email, password: data.password}))
   };
   return (
     <div>

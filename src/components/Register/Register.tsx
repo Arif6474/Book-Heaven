@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../../redux/hooks";
+import { createUser } from "../../redux/features/users/userSlice";
+import { toast } from "react-toastify";
 
 interface SignupFormInputs {
   email: string;
   password: string;
 }
 function Register() {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -13,8 +18,10 @@ function Register() {
   } = useForm<SignupFormInputs>();
 
   const onSubmit = (data: SignupFormInputs) => {
-    console.log(data);
-    // dispatch(createUser({email : data.email, password: data.password}))
+   dispatch(createUser({email : data.email, password: data.password}))
+    toast.success('Register successfully done',{
+      theme:"dark"
+  })
   };
   return (
     <div>
@@ -48,7 +55,7 @@ function Register() {
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
-            <label className="text-sm font-medium text-slate-100" htmlFor="email">
+            {/* <label className="text-sm font-medium text-slate-100" htmlFor="email">
               Confirm Password
             </label>
             <input
@@ -58,7 +65,7 @@ function Register() {
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
-            />
+            /> */}
           </div>
           <button className="btn">Register</button>
         </div>

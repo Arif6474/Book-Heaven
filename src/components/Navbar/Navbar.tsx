@@ -1,6 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { signOut } from "firebase/auth";
+import { auth } from "../../utils/firebase";
+import { setUser } from "../../redux/features/users/userSlice";
 
 function Navbar() {
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
+  };
   return (
     <div className="navbar bg-gray-100">
       <div className="navbar-start">
@@ -47,13 +63,24 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="p-4 cursor-pointer text-xl">
-          Login
-        </Link>
-        <Link to="/register" className="p-4 cursor-pointer text-xl">
-          Register
-        </Link>
-        <a className="btn btn-error">Logout</a>
+        {
+        !user?.email &&
+         (
+          <>
+            <Link to="/login" className="p-4 cursor-pointer text-xl">
+              Login
+            </Link>
+            <Link to="/register" className="p-4 cursor-pointer text-xl">
+              Register
+            </Link>
+          </>
+        )}
+        {
+          user?.email &&
+          <a className="btn btn-error" onClick={handleLogout}>
+            Logout
+          </a>
+        }
       </div>
     </div>
   );
