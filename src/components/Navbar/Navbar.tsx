@@ -73,7 +73,7 @@ function Navbar() {
         )}
         {
           user?.email &&
-          <a className="btn btn-error" onClick={handleLogout}>
+          <a className="btn bg-red-600 text-slate-50 border-none" onClick={handleLogout}>
             Logout
           </a>
         }

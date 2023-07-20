@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { IBook } from "../../../types/globalTypes";
 import { api } from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
@@ -27,6 +28,14 @@ const bookApi = api.injectEndpoints({
       query: (id) => `/review/${id}`,
       providesTags: ["reviews"],
     }),
+    addBook: builder.mutation<IBook, Partial<IBook>>({
+      query: (data) => ({
+        url: "/book",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["books"],
+    }),
   }),
 });
 
@@ -36,4 +45,5 @@ export const {
   useSearchBooksQuery,
   usePostReviewMutation,
   useGetReviewsQuery,
+  useAddBookMutation
 } = bookApi;

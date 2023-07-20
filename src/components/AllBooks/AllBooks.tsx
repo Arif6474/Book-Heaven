@@ -9,6 +9,7 @@ import { setSearchTerm } from "../../redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IBook } from "../../types/globalTypes";
 import SingleBook from "./SingleBook/SingleBook";
+import { Link } from "react-router-dom";
 
 function AllBooks() {
   const { data: books } = useGetBooksQuery(undefined);
@@ -41,9 +42,9 @@ function AllBooks() {
           className="input input-bordered w-24 md:w-auto"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <div>
+        <Link to='/addNewBook'>
           <button className="btn btn-success text-slate-900">Add New Book</button>
-        </div>
+        </Link>
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-20 p-10 mt-10">
         {filteredData?.map((book: IBook) => (
