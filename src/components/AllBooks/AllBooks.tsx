@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useEffect, useState } from "react";
 import { useGetBooksQuery } from "../../redux/features/books/bookAPIs";
 import { setSearchTerm } from "../../redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -10,20 +12,20 @@ import SingleBook from "./SingleBook/SingleBook";
 
 function AllBooks() {
   const { data: books } = useGetBooksQuery(undefined);
+  const [searchQuery, setSearchQuery] = useState("");
   const searchTerm = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
 
-  const handleSearchChange = (e: { target: { value: any } }) => {
-    const searchTerm = e.target.value;
-    dispatch(setSearchTerm(searchTerm));
-  };
+  useEffect(() => {
+    dispatch(setSearchTerm(searchQuery));
+  }, [dispatch, searchQuery]);
 
+  
   const filteredData = books?.filter(
     (item: { title: string; author: string; genre: string }) => {
       const itemValues = Object.values(item).map((value) =>
         value.toString().toLowerCase()
       );
-
       return itemValues.some((value) =>
         value.includes(searchTerm.toLowerCase())
       );
@@ -37,7 +39,7 @@ function AllBooks() {
           type="text"
           placeholder="Search"
           className="input input-bordered w-24 md:w-auto"
-          onChange={handleSearchChange}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         {/* <button className="btn btn-accent" onClick={handleSearch}>Search</button> */}
       </div>

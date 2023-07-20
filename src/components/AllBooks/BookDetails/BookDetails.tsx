@@ -1,12 +1,35 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useParams } from "react-router-dom";
-import { useSingleBookQuery } from "../../../redux/features/books/bookAPIs";
+import {
+  useGetReviewsQuery,
+  usePostReviewMutation,
+  useSingleBookQuery,
+} from "../../../redux/features/books/bookAPIs";
+import { useState } from "react";
 
 function BookDetails() {
   const { id } = useParams();
+  const [inputValue, setInputValue] = useState<string>("");
   const { data: book } = useSingleBookQuery(id);
-  console.log("🚀 ~ file: BookDetails.tsx:7 ~ BookDetails ~ book:", book);
+
+  const [postReview] = usePostReviewMutation();
+  const { data } = useGetReviewsQuery(id);
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(inputValue);
+    const options = {
+      id: id,
+      data: { review: inputValue },
+    };
+
+    postReview(options);
+
+    setInputValue("");
+  };
   return (
     <div className="pt-10">
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300 pb-8 px-32">
@@ -21,9 +44,7 @@ function BookDetails() {
           </p>
           <p>
             Category:{" "}
-            <span className="text-gray-300 font-bold px-2">
-              {book?.genre}
-            </span>
+            <span className="text-gray-300 font-bold px-2">{book?.genre}</span>
           </p>
           <p>
             Publication Date:{" "}
@@ -33,16 +54,27 @@ function BookDetails() {
       </div>
 
       <div className="flex max-w-12xl mx-auto items-center border-gray-300 pb-8 px-32 pt-4">
-        {/* {data?.reviews?.map((review: string) => (
-          <>
-            <div className="w-10 rounded-full mr-4">
-              <img src={data?.profile} />
-            </div>
-            <div>
-              <p>{review}</p>
-            </div>
-          </>
-        ))} */}
+        <form onSubmit={handleSubmit} className="w-[75%] flex items-center">
+          <textarea
+            className="textarea textarea-primary w-[75%]"
+            placeholder="Review"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          ></textarea>
+          <button
+            type="submit"
+            className="btn bg-primary p-4 rounded-lg ml-2 cursor-pointer"
+          >
+            submit
+          </button>
+        </form>
+      </div>
+      <div className="bg-slate-400 mx-32">
+      {data?.reviews?.map((review: string) => (
+        <div className="flex max-w-12xl mx-auto items-center border-gray-300 pb-4 px-32 pt-1">
+            <p>{review}</p>
+        </div>
+      ))}
       </div>
     </div>
   );

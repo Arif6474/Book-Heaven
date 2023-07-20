@@ -4,7 +4,7 @@
 
 import { Link } from "react-router-dom";
 
-function SingleBook({ book }) {
+function SingleBook({ book  }) {
   return (
     <div className="card w-100 bg-base-300 shadow-xl p-4">
       <Link to={`/book-detail/${book._id}`}>
