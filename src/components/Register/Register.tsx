@@ -27,7 +27,7 @@ function Register() {
     }
   };
   return (
-    <div>
+    <div className="pt-16">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-4 max-w-[400px] mx-auto bg-slate-600 rounded-lg p-10">
           <div className="grid gap-1">

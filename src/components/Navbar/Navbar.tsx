@@ -42,7 +42,7 @@ function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>All Books</a>
+              <Link to='/books'>All Books</Link>
             </li>
 
             <li>
@@ -50,12 +50,12 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Book Heaven</a>
+        <Link to='/' className="btn btn-ghost normal-case text-xl">Book Heaven</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>All Books</a>
+          <Link to='/books'>All Books</Link>
           </li>
           <li>
             <a>Item 3</a>
