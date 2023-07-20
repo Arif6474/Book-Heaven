@@ -46,9 +46,6 @@ function Navbar() {
               <Link to='/books'>All Books</Link>
             </li>
 
-            <li>
-              <a>Item 3</a>
-            </li>
           </ul>
         </div>
         <Link to='/' className="btn btn-ghost normal-case text-xl">Book Heaven</Link>
@@ -56,11 +53,9 @@ function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-          <Link to='/books'>All Books</Link>
+          <Link to='/books' className="font-bold text-gray-600">All Books</Link>
           </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+
         </ul>
       </div>
       <div className="navbar-end">

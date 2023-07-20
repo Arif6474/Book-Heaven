@@ -69,9 +69,9 @@ function BookDetails() {
           </button>
         </form>
       </div>
-      <div className="bg-slate-400 mx-32">
+      <div className="bg-gray-700 w-[600px] ml-32 rounded text-start">
       {data?.reviews?.map((review: string) => (
-        <div className="flex max-w-12xl mx-auto items-center border-gray-300 pb-4 px-32 pt-1">
+        <div className="flex max-w-12xl mx-auto items-center border-b-slate-950 pb-4  pl-4 pt-1">
             <p>{review}</p>
         </div>
       ))}

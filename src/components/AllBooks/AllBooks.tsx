@@ -34,14 +34,16 @@ function AllBooks() {
 
   return (
     <div className="p-10">
-      <div className="form-control w-48 flex flex-row">
+      <div className="form-control px-10 flex flex-row justify-between">
         <input
           type="text"
           placeholder="Search"
           className="input input-bordered w-24 md:w-auto"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        {/* <button className="btn btn-accent" onClick={handleSearch}>Search</button> */}
+        <div>
+          <button className="btn btn-success text-slate-900">Add New Book</button>
+        </div>
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-20 p-10 mt-10">
         {filteredData?.map((book: IBook) => (
