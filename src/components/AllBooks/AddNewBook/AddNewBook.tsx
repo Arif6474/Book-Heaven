@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import {useState} from 'react'
 import { useAddBookMutation } from "../../../redux/features/books/bookAPIs";
 function AddNewBook() {
-    interface Book {
+  interface Book {
         title: string;
         author: string;
         img: string;
