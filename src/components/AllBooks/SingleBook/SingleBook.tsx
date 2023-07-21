@@ -35,7 +35,7 @@ function SingleBook({ book }: { book: Book }) {
               toast.error("Already Added to wishlist")
             }
           }}
-          className="text-red-600 cursor-pointer text-2xl absolute top-4 right-4"
+          className={`text-red-600 cursor-pointer text-2xl absolute top-4 right-4 ${checkWishlistBook && 'text-green-500 '}`}
         >
           <RiHeart3Line />
         </div>
