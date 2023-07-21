@@ -1,20 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useUpdateBookMutation } from "../../../redux/features/books/bookAPIs";
+import { useSingleBookQuery, useUpdateBookMutation } from "../../../redux/features/books/bookAPIs";
 function EditBook() {
   const { id } = useParams();
 
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().slice(0, 10);
-
+  const { data: book } = useSingleBookQuery(id);
   const [updatedData, setUpdatedData] = useState({
-    title: "",
-    author: "",
-    genre: "",
+    title: book.title,
+    author: book.author,
+    genre: book.genre,
     publication_date: formattedDate,
-    img: "",
+    img: book.img,
     reviews: [],
   });
 

@@ -21,6 +21,7 @@ function BookDetails() {
   const { data: book } = useSingleBookQuery(id);
 
   const [postReview] = usePostReviewMutation();
+  
   const { data } = useGetReviewsQuery(id);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
