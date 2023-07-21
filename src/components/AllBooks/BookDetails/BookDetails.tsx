@@ -44,7 +44,9 @@ function BookDetails() {
       deleteBook(id)
         .unwrap()
         .then(() => {
-          toast.success("Book deleted successfully");
+          toast.success("Book deleted successfully", {
+            theme: "dark",
+            });
           navigate("/");
         })
         .catch((err) => {

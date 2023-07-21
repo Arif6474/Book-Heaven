@@ -26,7 +26,9 @@ function EditBook() {
     updateBook({ id, updatedData })
       .unwrap()
       .then(() => {
-        toast.success("Book updated successfully");
+        toast.success("Book updated successfully", {
+          theme: "dark",
+          });
         setUpdatedData({
             title: "",
             author: "",

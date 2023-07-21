@@ -37,7 +37,9 @@ function AddNewBook() {
         event.preventDefault();
         addBook(formData);
         console.log(formData);
-        toast("Add new book successfully");
+        toast("Add new book successfully" , {
+          theme: "dark",
+          });
         setFormData({
           title: "",
           author: "",

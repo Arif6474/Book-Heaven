@@ -30,9 +30,13 @@ function SingleBook({ book }: { book: Book }) {
           onClick={() =>{
             dispatch(addToWishlist(book))
             if (!checkWishlistBook) {
-              toast.success("Added to wishlist")
+              toast.success("Added to wishlist", {
+                theme: "dark",
+                })
             }else{
-              toast.error("Already Added to wishlist")
+              toast.error("Already Added to wishlist", {
+                theme: "dark",
+                })
             }
           }}
           className={`text-red-600 cursor-pointer text-2xl absolute top-4 right-4 ${checkWishlistBook && 'text-green-500 '}`}
