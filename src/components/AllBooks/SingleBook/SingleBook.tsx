@@ -1,10 +1,18 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 import { Link } from "react-router-dom";
-
-function SingleBook({ book  }) {
+interface Book {
+  _id: string;
+  title: string;
+  img: string;
+  author: string;
+  genre: string;
+  publication_date: string;
+  reviews: any[];
+}
+function SingleBook({ book }: { book: Book }) {
   return (
     <div className="card w-100 bg-base-300 shadow-xl p-4">
       <Link to={`/book-detail/${book._id}`}>
@@ -16,9 +24,6 @@ function SingleBook({ book  }) {
           <p>Author: {book.author}</p>
           <h1>Genre: {book.genre}</h1>
           <p>published: {book.publication_date}</p>
-          {/* <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div> */}
         </div>
       </Link>
     </div>

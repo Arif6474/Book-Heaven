@@ -7,10 +7,18 @@ import { useEffect, useState } from "react";
 import { useGetBooksQuery } from "../../redux/features/books/bookAPIs";
 import { setSearchTerm } from "../../redux/features/search/searchSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IBook } from "../../types/globalTypes";
+
 import SingleBook from "./SingleBook/SingleBook";
 import { Link } from "react-router-dom";
-
+interface Book {
+  _id: string;
+  title: string;
+  img: string;
+  author: string;
+  genre: string;
+  publication_date: string;
+  reviews: any[];
+}
 function AllBooks() {
   const { data: books } = useGetBooksQuery(undefined);
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,7 +55,7 @@ function AllBooks() {
         </Link>
       </div>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-20 p-10 mt-10">
-        {filteredData?.map((book: IBook) => (
+        {filteredData?.map((book: Book) => (
           <SingleBook key={book._id} book={book} />
         ))}
       </div>
