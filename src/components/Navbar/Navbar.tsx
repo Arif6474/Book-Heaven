@@ -43,25 +43,33 @@ function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to='/books'>All Books</Link>
+              <Link to="/books">All Books</Link>
             </li>
-
+            <li>
+              <Link to="/wishlist">Wishlist</Link>
+            </li>
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost normal-case text-xl">Book Heaven</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Book Heaven
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-          <Link to='/books' className="font-bold text-gray-600">All Books</Link>
+            <Link to="/books" className="font-bold text-gray-600">
+              All Books
+            </Link>
           </li>
-
+          <li>
+            <Link to="/wishlist" className="font-bold text-gray-600">
+              Wishlist
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        {
-        !user?.email &&
-         (
+        {!user?.email && (
           <>
             <Link to="/login" className="p-4 cursor-pointer text-xl">
               Login
@@ -71,12 +79,14 @@ function Navbar() {
             </Link>
           </>
         )}
-        {
-          user?.email &&
-          <a className="btn bg-red-600 text-slate-50 border-none" onClick={handleLogout}>
+        {user?.email && (
+          <a
+            className="btn bg-red-600 text-slate-50 border-none"
+            onClick={handleLogout}
+          >
             Logout
           </a>
-        }
+        )}
       </div>
     </div>
   );
