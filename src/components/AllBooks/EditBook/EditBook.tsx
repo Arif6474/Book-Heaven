@@ -17,7 +17,7 @@ function EditBook() {
     genre: book.genre,
     publication_date: formattedDate,
     img: book.img,
-    reviews: [],
+    reviews: book.review,
   });
 
   const [updateBook] = useUpdateBookMutation();
