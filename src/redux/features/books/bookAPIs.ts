@@ -22,11 +22,11 @@ const bookApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["reviews"],
+      invalidatesTags: ["books"],
     }),
     getReviews: builder.query({
       query: (id) => `/review/${id}`,
-      providesTags: ["reviews"],
+      providesTags: ["books"],
     }),
 
     addBook: builder.mutation<IBook, Partial<IBook>>({
@@ -44,7 +44,7 @@ const bookApi = api.injectEndpoints({
         body: updatedData,
       }),
     }),
-    deleteBook: builder.mutation<void, number>({
+    deleteBook: builder.mutation({
       query: (id) => ({
         url: `/book/${id}`,
         method: "DELETE",
