@@ -1,0 +1,65 @@
+.modal {
+    z-index: 1060;
+}
+
+.modal,
+.modal_backdrop {
+    position: fixed;
+    top     : 0;
+    left    : 0;
+    width   : 100%;
+    height  : 100%;
+}
+
+.modal_backdrop {
+    background-color: rgb(112 112 112 / 82%);
+}
+
+.modal_dialog {
+    position      : relative;
+    max-width     : 114rem;
+    margin        : 1.75rem auto;
+    pointer-events: none;
+}
+
+.modal.small .modal_dialog {
+    max-width: 48.6rem;
+}
+
+.modal_dialog_scrollable {
+    height: calc(100% - 3.5rem);
+}
+
+.modal_dialog_centered {
+    display    : flex;
+    align-items: center;
+    min-height : calc(100% - 3.5rem);
+}
+
+.modal_content {
+    position        : relative;
+    width           : 100%;
+    display         : flex;
+    flex-direction  : column;
+    background-color: var(--black);
+    border-radius   : 1rem;
+    pointer-events  : auto;
+    padding         : 3rem 4rem; 
+    z-index         : 2;
+}
+
+.modal_dialog_scrollable .modal_content {
+    max-height: 100%;
+    overflow  : hidden;
+}
+
+.modal_dialog_scrollable .modal_body::-webkit-scrollbar {
+    display: none;
+}
+
+.modal_dialog_scrollable .modal_body {
+    overflow-y        : auto;
+    -ms-overflow-style: none;
+    scrollbar-width   : none;
+}
+

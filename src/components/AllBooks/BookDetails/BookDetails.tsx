@@ -2,16 +2,21 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
+  useDeleteBookMutation,
   useGetReviewsQuery,
   usePostReviewMutation,
   useSingleBookQuery,
 } from "../../../redux/features/books/bookAPIs";
 import { useState } from "react";
+import { toast } from "react-toastify";
+
 
 function BookDetails() {
+  const [deleteBook] = useDeleteBookMutation();
   const { id } = useParams();
+  const navigate = useNavigate()
   const [inputValue, setInputValue] = useState<string>("");
   const { data: book } = useSingleBookQuery(id);
 
@@ -29,6 +34,22 @@ function BookDetails() {
     postReview(options);
 
     setInputValue("");
+  }
+
+  const handleDeleteBook = () => {
+    const confirmed = window.confirm("Are you sure  you want to delete book");
+    if (confirmed) {
+      
+      deleteBook(id)
+        .unwrap() 
+        .then(() => {
+          toast.success('Book deleted successfully');
+          navigate('/')
+        })
+        .catch((err) => {
+          toast.error('Error deleting book:', err);
+        });
+    }
   };
   return (
     <div className="pt-10">
@@ -50,6 +71,10 @@ function BookDetails() {
             Publication Date:{" "}
             <span className="font-bold px-2">{book?.publication_date}</span>
           </p>
+          <div className="flex gap-4 ">
+            <button className="btn bg-cyan-900 btn-sm">Edit Book</button>
+            <button className="btn bg-red-900 btn-sm" onClick={handleDeleteBook}>Delete Book</button>
+          </div>
         </div>
       </div>
 
@@ -76,6 +101,7 @@ function BookDetails() {
         </div>
       ))}
       </div>
+     
     </div>
   );
 }
